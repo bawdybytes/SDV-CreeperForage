@@ -1,7 +1,7 @@
 ﻿{
 	"Name": "CreeperForage",
 	"Author": "bawdybytes",
-	"Version": "0.0.1",
+	"Version": "0.2.0",
 	"Description": "A mod for creepers. Adds forageable items.",
 	"UniqueID": "bawdybytes.creeperforage",
 	"EntryDll": "CreeperForage.dll",
