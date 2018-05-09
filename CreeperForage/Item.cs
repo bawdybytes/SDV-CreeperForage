@@ -50,22 +50,29 @@ namespace CreeperForage
         {
             Mod.instance.Helper.Content.AssetEditors.Add(new Assets());
             items = new Dictionary<string, Item>();
-            SetupItem("px.haley1", "pxhl1", "Haley's Panties", "These look expensive.", 31, 10);
-            SetupItem("px.haley2", "pxhl2", "Haley's Panties", "These have clearly been worn.", 34, 10);
-            SetupItem("px.abigail1", "pxab1", "Abigail's Panties", "How exciting!", 29, 10);
-            SetupItem("px.abigail2", "pxab2", "Abigail's Panties", "They smell just like her.", 33, 10);
-            SetupItem("px.emily1", "pxem1", "Emily's Panties", "I thought they'd be brighter.", 27, 10);
-            SetupItem("px.emily2", "pxem2", "Emily's Panties", "This is a nice material.", 35, 10);
-            SetupItem("px.penny1", "pxpn1", "Penny's Panties", "How charming.", 29, 10);
-            SetupItem("px.leah1", "pxlh1", "Leah's Panties", "I don't think she'd mind.", 31, 10);
-            SetupItem("px.leah2", "pxlh2", "Leah's Panties", "What a lucky find!", 34, 10);
-            SetupItem("px.jodi1", "pxjd1", "Jodi's Panties", "Huh.", 29, 10);
-            SetupItem("px.caroline1", "pxcr1", "Caroline's Panties", "About what I'd expect.", 27, 10);
-            SetupItem("px.caroline2", "pxcr2", "Caroline's Panties", "Well how about that.", 32, 10);
-            SetupItem("px.maru1", "pxmu1", "Maru's Panties", "A little less shy on the inside.", 32, 10);
-            SetupItem("px.maru2", "pxmu2", "Maru's Panties", "Thoroughly lived in.", 33, 10);
-            SetupItem("px.robin1", "pxrb1", "Robin's Panties", "A lucky find?", 33, 10);
-            SetupItem("px.robin2", "pxrb2", "Robin's Panties", "They smell faintly of sawdust.", 36, 10);
+            CreateBasicPersonalItem("Haley", 1, "These look expensive.", 41);
+            CreateBasicPersonalItem("Haley", 2, "These have clearly been worn.", 29);
+            CreateBasicPersonalItem("Abigail", 1, "How exciting!", 29);
+            CreateBasicPersonalItem("Abigail", 2, "They smell just like " + Config.GetNPC("Abigail").GetPronoun(1) + ".", 33);
+            CreateBasicPersonalItem("Emily", 1, "I thought they'd be brighter.", 27);
+            CreateBasicPersonalItem("Emily", 2, "This is a nice material.", 35);
+            CreateBasicPersonalItem("Penny", 1, "How charming.", 29);
+            CreateBasicPersonalItem("Penny", 2, "They smell kind of sweet.", 32);
+            CreateBasicPersonalItem("Leah", 1, "I don't think " + Config.GetNPC("Abigail").GetPronoun(0) + "'d mind.", 31);
+            CreateBasicPersonalItem("Leah", 2, "What a lucky find!", 34); 
+            CreateBasicPersonalItem("Jodi", 1, "Huh.", 22);
+            CreateBasicPersonalItem("Jodi", 2, "A rare sight.", 22);
+            CreateBasicPersonalItem("Caroline", 1, "About what I'd expect.", 24);
+            CreateBasicPersonalItem("Caroline", 2, "Well how about that.", 32);
+            CreateBasicPersonalItem("Maru", 1, "A little less shy on the inside.", 32);
+            CreateBasicPersonalItem("Maru", 2, "Thoroughly lived in.", 33);
+            CreateBasicPersonalItem("Robin", 1, "A lucky find?", 33);
+            CreateBasicPersonalItem("Robin", 2, "They smell faintly of sawdust.", 36);
+        }
+
+        public static void CreateBasicPersonalItem(string npc, int variant, string desc, int price)
+        {
+            SetupItem("px." + npc.ToLower() + variant, "px" + Config.GetNPC(npc).Abbreviate(npc) + (Config.GetNPC(npc).HasMaleItems() ? "m" : "f") + variant, Config.GetNPC(npc).Name + "'s " + (Config.GetNPC(npc).HasMaleItems() ? "Underwear" : "Panties"), desc, price, 10);
         }
 
         public static void SetupItem(string id, string tx, string name, string desc, int price, int edibility)
